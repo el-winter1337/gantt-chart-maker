@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LexEdge Nepal | Project Simulator</title>
+    <style>
+        :root {
+            --bg-dark: #12141d;
+            --card-bg: #1e212b;
+            --text-main: #ffffff;
+            --text-dim: #94a3b8;
+            --primary-blue: #3b82f6;
+            --primary-green: #4ade80;
+            --primary-orange: #fbbf24;
+            --primary-pink: #f472b6;
+            --primary-purple: #a855f7;
+            --target-line: #ff5a5f;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            display: flex;
+            justify-content: center;
+            padding: 40px;
+            margin: 0;
+        }
+
+        .simulator-card {
+            background-color: var(--card-bg);
+            width: 850px;
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+        }
+
+        /* Top Header Stats */
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 10px;
+        }
+        .title-area h1 { font-size: 24px; margin: 0; letter-spacing: -0.5px; }
+        .stats-area { display: flex; gap: 30px; }
+        .stat-box { text-align: left; }
+        .stat-label { font-size: 11px; text-transform: uppercase; color: var(--text-dim); letter-spacing: 1px; }
+        .stat-value { font-size: 18px; font-weight: bold; }
+
+        .strategy-banner {
+            background: rgba(59, 130, 246, 0.1);
+            border: 1px solid rgba(59, 130, 246, 0.2);
+            padding: 12px;
+            border-radius: 8px;
+            font-size: 13px;
+            margin-bottom: 30px;
+            color: #93c5fd;
+        }
+
+        /* Chart Area */
+        .chart-container {
+            position: relative;
+            height: 450px;
+            margin-top: 50px;
+            border-bottom: 1px solid #334155;
+        }
+
+        .grid-line {
+            position: absolute;
+            top: 0; bottom: 0;
+            width: 1px;
+            border-left: 1px dashed #334155;
+            z-index: 1;
+        }
+        .grid-label {
+            position: absolute;
+            top: -30px;
+            transform: translateX(-50%);
+            font-size: 12px;
+            font-weight: bold;
+            color: var(--text-dim);
+        }
+
+        /* Task Bars */
+        .task-row {
+            position: absolute;
+            width: 100%;
+            height: 35px;
+            display: flex;
+            align-items: center;
+        }
+        .task-bar {
+            height: 22px;
+            border-radius: 4px;
+            position: absolute;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            display: flex;
+            align-items: flex-end;
+            padding-bottom: 25px;
+            font-size: 11px;
+            font-weight: 500;
+            white-space: nowrap;
+        }
+
+        .target-marker {
+            position: absolute;
+            top: 0; bottom: 0;
+            width: 2px;
+            background-color: var(--target-line);
+            z-index: 5;
+        }
+        .target-bubble {
+            position: absolute;
+            top: -45px;
+            left: -50px;
+            background: transparent;
+            border: 1px solid var(--target-line);
+            color: var(--text-main);
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 11px;
+            width: 100px;
+            text-align: center;
+        }
+
+        /* Controls Section */
+        .controls {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid #334155;
+        }
+        .control-group {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        .control-group label { font-size: 13px; width: 150px; color: var(--text-dim); }
+        input[type=range] { flex-grow: 1; accent-color: var(--primary-blue); }
+        .val-display {
+            background: #2d313e;
+            padding: 5px 12px;
+            border-radius: 6px;
+            min-width: 30px;
+            text-align: center;
+            font-weight: bold;
+            border: 1px solid #475569;
+        }
+
+        .month-labels {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 15px;
+            color: var(--primary-blue);
+            font-size: 13px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+<div class="simulator-card">
+    <div class="header">
+        <div class="title-area">
+            <h1>LexEdge Nepal Project Simulator</h1>
+        </div>
+        <div class="stats-area">
+            <div class="stat-box"><div class="stat-label">Start</div><div class="stat-value">Month 1 / Wk 1</div></div>
+            <div class="stat-box"><div class="stat-label">Est. Completion</div><div class="stat-value" id="completion-wk">Wk 24</div></div>
+            <div class="stat-box"><div class="stat-label">Total Duration</div><div class="stat-value" id="total-duration">24.0 Weeks</div></div>
+        </div>
+    </div>
+
+    <div class="strategy-banner" id="strategy-text">
+        STRATEGY: Project is within the 6-month window. Use this buffer to conduct deeper stress testing.
+    </div>
+
+    <div class="chart-container" id="chart">
+        <div id="grid-lines"></div>
+        
+        <div class="target-marker" style="left: 92.3%;"> <div class="target-bubble">6-MONTH TARGET</div>
+        </div>
+
+        <div id="tasks-container"></div>
+    </div>
+
+    <div class="month-labels">
+        <span>Month 1</span><span>Month 2</span><span>Month 3</span>
+        <span>Month 4</span><span>Month 5</span><span>Month 6</span>
+    </div>
+
+    <div class="controls">
+        <div class="control-group">
+            <label>Customs Delay (Wks)</label>
+            <input type="range" id="customs-slider" min="1" max="10" value="3">
+            <div class="val-display" id="customs-val">3</div>
+        </div>
+        <div class="control-group">
+            <label>P3: Software Dev (Wks)</label>
+            <input type="range" id="dev-slider" min="6" max="16" value="8">
+            <div class="val-display" id="dev-val">8</div>
+        </div>
+        <div class="control-group">
+            <label>P4: Testing (Wks)</label>
+            <input type="range" id="test-slider" min="2" max="10" value="5">
+            <div class="val-display" id="test-val">5</div>
+        </div>
+        <button style="background:#2d313e; color:white; border:none; border-radius:8px; cursor:pointer;" onclick="location.reload()">Reset Baseline</button>
+    </div>
+</div>
+
+<script>
+    const tasksContainer = document.getElementById('tasks-container');
+    const gridLines = document.getElementById('grid-lines');
+
+    // Configuration
+    const scale = 100 / 26; // Percent per week (26 weeks max display to fit 6 months nicely)
+
+    const tasksData = [
+        { name: 'Stakeholder Alignment', start: 0, dur: 1, color: 'var(--primary-blue)' },
+        { name: 'Resource Planning', start: 1, dur: 1, color: 'var(--primary-blue)' },
+        { name: 'Hardware Procurement', start: 2, dur: 5, color: 'var(--primary-green)' },
+        { name: 'Customs & Shipping', start: 7, dur: 3, color: 'var(--primary-green)', dynamic: 'customs' },
+        { name: 'Core Module Engineering', start: 2, dur: 8, color: 'var(--primary-orange)', dynamic: 'dev' },
+        { name: 'AI Model Tuning', start: 10, dur: 4, color: 'var(--primary-orange)' },
+        { name: 'System Integration', start: 14, dur: 5, color: 'var(--primary-pink)', dynamic: 'test' },
+        { name: 'User Acceptance (UAT)', start: 19, dur: 2, color: 'var(--primary-pink)' },
+        { name: 'Final Deployment', start: 21, dur: 2, color: 'var(--primary-purple)' }
+    ];
+
+    function initChart() {
+        // Create Grid
+        for(let i=0; i<=26; i+=4) {
+            const line = document.createElement('div');
+            line.className = 'grid-line';
+            line.style.left = (i * scale) + '%';
+            line.innerHTML = `<div class="grid-label">Wk ${i}</div>`;
+            gridLines.appendChild(line);
+        }
+        update();
+    }
+
+    function update() {
+        const customsDur = parseInt(document.getElementById('customs-slider').value);
+        const devDur = parseInt(document.getElementById('dev-slider').value);
+        const testDur = parseInt(document.getElementById('test-slider').value);
+
+        document.getElementById('customs-val').innerText = customsDur;
+        document.getElementById('dev-val').innerText = devDur;
+        document.getElementById('test-val').innerText = testDur;
+
+        tasksContainer.innerHTML = '';
+        
+        let currentOffset = 0;
+        let maxReach = 0;
+
+        tasksData.forEach((task, index) => {
+            let duration = task.dur;
+            if(task.dynamic === 'customs') duration = customsDur;
+            if(task.dynamic === 'dev') duration = devDur;
+            if(task.dynamic === 'test') duration = testDur;
+
+            // Simple waterfall logic for logic-dependent tasks
+            let start = task.start;
+            if (index > 3) { // After customs/initial dev
+                // This is a simplified simulation of the 'push' effect
+                if (task.name === 'AI Model Tuning') start = 7 + customsDur;
+                if (task.name === 'System Integration') start = Math.max((7 + customsDur + 4), (2 + devDur));
+                if (task.name === 'User Acceptance (UAT)') start = Math.max((7 + customsDur + 4), (2 + devDur)) + testDur;
+                if (task.name === 'Final Deployment') start = Math.max((7 + customsDur + 4), (2 + devDur)) + testDur + 2;
+            }
+
+            const row = document.createElement('div');
+            row.className = 'task-row';
+            row.style.top = (index * 45) + 'px';
+            
+            const bar = document.createElement('div');
+            bar.className = 'task-bar';
+            bar.style.left = (start * scale) + '%';
+            bar.style.width = (duration * scale) + '%';
+            bar.style.backgroundColor = task.color;
+            bar.innerText = task.name;
+
+            row.appendChild(bar);
+            tasksContainer.appendChild(row);
+
+            maxReach = Math.max(maxReach, start + duration);
+        });
+
+        document.getElementById('completion-wk').innerText = 'Wk ' + Math.ceil(maxReach);
+        document.getElementById('total-duration').innerText = maxReach.toFixed(1) + ' Weeks';
+        
+        const strategyText = document.getElementById('strategy-text');
+        if (maxReach > 24) {
+            strategyText.innerText = "WARNING: Project exceeds 6-month target. Expedite Software Engineering or reduce Testing scope.";
+            strategyText.style.color = "#fca5a5";
+            strategyText.style.background = "rgba(239, 68, 68, 0.1)";
+        } else {
+            strategyText.innerText = "STRATEGY: Project is within the 6-month window. Use this buffer to conduct deeper stress testing.";
+            strategyText.style.color = "#93c5fd";
+            strategyText.style.background = "rgba(59, 130, 246, 0.1)";
+        }
+    }
+
+    document.querySelectorAll('input').forEach(input => input.addEventListener('input', update));
+    initChart();
+</script>
+</body>
+</html>
