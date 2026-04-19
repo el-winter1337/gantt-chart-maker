@@ -1,8 +1,8 @@
-# Gantt Chart Maker (Aganty)
+# Gantt Chart Maker (Agantty)
 
 A sleek, dynamic, and fully responsive Gantt Chart application built to modernize project mapping. 
 
-Live Demo: [https://aganty.edgeone.app/](https://aganty.edgeone.app/)
+Live Demo: [https://agantty.edgeone.app/](https://agantty.edgeone.app/)
 
 ## Key Features
 
