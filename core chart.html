@@ -16,27 +16,27 @@
             --text-dim: #94a3b8;
             --page-bg: linear-gradient(135deg, #020617 0%, #172554 100%);
             --nav-bg: rgba(15, 23, 42, 0.4);
-            
+
             /* Overlays (mostly semantic for dark/light) */
             --glass-bg: rgba(255, 255, 255, 0.03);
             --glass-border: rgba(255, 255, 255, 0.05);
             --glass-bg-hover: rgba(255, 255, 255, 0.06);
             --glass-border-hover: rgba(255, 255, 255, 0.1);
-            
+
             --input-bg: rgba(0, 0, 0, 0.2);
             --input-border: rgba(255, 255, 255, 0.08);
             --input-bg-hover: rgba(0, 0, 0, 0.4);
             --input-border-hover: rgba(255, 255, 255, 0.3);
             --input-bg-focus: rgba(0, 0, 0, 0.5);
-            
+
             --btn-ghost-bg: rgba(255, 255, 255, 0.05);
             --btn-ghost-border: rgba(255, 255, 255, 0.1);
             --btn-ghost-hover: rgba(255, 255, 255, 0.1);
             --btn-ghost-hover-border: rgba(255, 255, 255, 0.2);
-            
+
             --title-grad-start: #fff;
             --title-grad-end: #93c5fd;
-            
+
             --modal-bg-grad: linear-gradient(135deg, #1e293b, #0f172a);
             --modal-overlay: rgba(0, 0, 0, 0.6);
             --shadow-color: rgba(0, 0, 0, 0.2);
@@ -46,16 +46,16 @@
             --scrollbar-thumb-hover: rgba(255, 255, 255, 0.3);
 
             /* Primary Colors */
-            --primary-blue: #3b82f6;
-            --primary-green: #10b981;
-            --primary-orange: #f59e0b;
-            --primary-pink: #ec4899;
-            --primary-purple: #8b5cf6;
-            --primary-red: #ef4444;
-            --primary-teal: #14b8a6;
-            --primary-cyan: #06b6d4;
-            --primary-yellow: #eab308;
-            --primary-indigo: #6366f1;
+            --primary-blue: #1d4ed8;
+            --primary-green: #047857;
+            --primary-orange: #c2410c;
+            --primary-pink: #be185d;
+            --primary-purple: #6d28d9;
+            --primary-red: #b91c1c;
+            --primary-teal: #0f766e;
+            --primary-cyan: #0e7490;
+            --primary-yellow: #a16207;
+            --primary-indigo: #4338ca;
         }
 
         [data-theme="light"] {
@@ -70,21 +70,21 @@
             --glass-border: rgba(0, 0, 0, 0.05);
             --glass-bg-hover: rgba(0, 0, 0, 0.04);
             --glass-border-hover: rgba(0, 0, 0, 0.1);
-            
+
             --input-bg: rgba(255, 255, 255, 0.7);
             --input-border: rgba(0, 0, 0, 0.1);
             --input-bg-hover: rgba(255, 255, 255, 1);
             --input-border-hover: rgba(0, 0, 0, 0.2);
             --input-bg-focus: #fff;
-            
+
             --btn-ghost-bg: rgba(0, 0, 0, 0.05);
             --btn-ghost-border: rgba(0, 0, 0, 0.1);
             --btn-ghost-hover: rgba(0, 0, 0, 0.08);
             --btn-ghost-hover-border: rgba(0, 0, 0, 0.15);
-            
+
             --title-grad-start: #1e3a8a;
             --title-grad-end: #2563eb;
-            
+
             --modal-bg-grad: linear-gradient(135deg, #ffffff, #f8fafc);
             --modal-overlay: rgba(255, 255, 255, 0.4);
             --shadow-color: rgba(0, 0, 0, 0.05);
@@ -124,9 +124,9 @@
             background: var(--page-bg);
             color: var(--text-main);
             margin: 0;
-            min-height: 100vh;
+            height: 100vh;
             box-sizing: border-box;
-            overflow-x: hidden;
+            overflow: hidden;
             display: flex;
             flex-direction: column;
         }
@@ -166,7 +166,7 @@
             border-color: var(--btn-ghost-hover-border);
             transform: translateY(-1px);
         }
-        
+
         .nav-btn:active {
             transform: translateY(0);
         }
@@ -177,6 +177,7 @@
             -webkit-backdrop-filter: blur(24px);
             width: 100%;
             flex: 1;
+            min-height: 0;
             padding: 30px 40px;
             box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1);
             display: grid;
@@ -184,6 +185,7 @@
             gap: 40px;
             border: none;
             box-sizing: border-box;
+            overflow: hidden;
         }
 
         /* Responsive */
@@ -270,11 +272,11 @@
             gap: 5px;
         }
 
-        /* Left Side: Controls */
         .controls-panel {
             display: flex;
             flex-direction: column;
             gap: 20px;
+            min-height: 0;
         }
 
         .form-group {
@@ -335,7 +337,8 @@
             display: flex;
             flex-direction: column;
             gap: 12px;
-            max-height: calc(100vh - 350px);
+            flex: 1;
+            min-height: 0;
             overflow-y: auto;
             padding-right: 5px;
         }
@@ -408,28 +411,51 @@
             display: flex;
             flex-direction: column;
             min-width: 0;
+            min-height: 0;
         }
 
         .chart-container {
             position: relative;
-            height: calc(100vh - 256px);
-            min-height: 400px;
+            flex: 1;
+            min-height: 0;
             margin-top: 10px;
             border-bottom: 1px solid var(--border-color);
-            overflow-x: auto;
-            overflow-y: auto;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
             width: 100%;
             box-sizing: border-box;
+        }
+
+        #timeline-header {
+            flex-shrink: 0;
+            position: relative;
+            height: 75px;
+            width: 100%;
+            border-bottom: 1px solid var(--border-color);
+            background: var(--card-bg);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            z-index: 50;
+            overflow: hidden;
+        }
+
+        #chart-scroll {
+            flex: 1;
+            min-height: 0;
+            overflow-x: auto;
+            overflow-y: auto;
         }
 
         .chart-inner {
             position: relative;
             min-width: 100%;
-            height: 100%;
-            min-height: 480px;
+            min-height: 100%;
+            height: max-content;
             border-left: 40px solid transparent;
             border-right: 40px solid transparent;
             box-sizing: border-box;
+            padding-bottom: 40px;
         }
 
         .grid-line {
@@ -443,25 +469,30 @@
 
         /* Task Bars */
         .task-row {
-            position: absolute;
+            position: relative;
             width: 100%;
-            height: 44px;
+            min-height: 52px;
             display: flex;
             align-items: center;
+            box-sizing: border-box;
+            padding: 8px 0;
         }
 
         .task-bar {
-            min-height: 28px;
+            min-height: 32px;
             border-radius: 8px;
-            position: absolute;
+            position: relative;
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             display: flex;
             align-items: center;
-            padding: 4px 12px;
+            padding: 8px 12px;
             font-size: 12px;
             font-weight: 600;
-            line-height: 1.2;
+            line-height: 1.4;
             word-break: break-word;
+            white-space: pre-wrap;
+            box-sizing: border-box;
+            flex-shrink: 0;
             overflow: hidden;
             color: #ffffff;
             text-shadow: 0 1px 2px var(--shadow-color);
@@ -482,15 +513,26 @@
             transform: translateY(0);
         }
 
-        .month-labels {
+        .month-labels, #week-labels {
             position: absolute;
-            top: 0px;
             left: 0;
             width: 100%;
+            border-left: 40px solid transparent;
+            border-right: 40px solid transparent;
+            box-sizing: border-box;
+        }
+
+        .month-labels {
+            top: 0px;
             height: 30px;
             color: var(--text-main);
             font-size: 14px;
             font-weight: 700;
+        }
+
+        #week-labels {
+            top: 35px;
+            height: 40px;
         }
     </style>
     <!-- Include html2canvas for extracting DOM components -->
@@ -500,11 +542,44 @@
 <body>
 
     <div class="top-navbar">
-        <input type="file" id="import-file-input" style="display: none;" accept=".db,.json" onchange="importDBFile(event)">
+        <input type="file" id="import-file-input" style="display: none;" accept=".db,.json"
+            onchange="importDBFile(event)">
         <button class="nav-btn" onclick="location.reload()">🏠 Home</button>
         <button class="nav-btn" onclick="triggerImport()">📥 Import DB</button>
         <button class="nav-btn" onclick="exportDBFile()">📤 Export DB</button>
         <button class="nav-btn" onclick="exportChartAsPNG()">📷 Export PNG</button>
+        <button class="nav-btn" onclick="randomizeColors()">🎨 Randomize Colors</button>
+
+        <div
+            style="display: flex; align-items: center; gap: 4px; border: 1px solid var(--btn-ghost-border); padding: 4px 8px; border-radius: 8px; margin-left: 12px; background: var(--input-bg);">
+            <select id="fs-target" onchange="updateFontSizeDisplay()"
+                style="background: transparent; border: none; color: var(--text-main); font-size: 13px; font-weight: 600; outline: none; cursor: pointer;">
+                <option value="task" style="background: var(--bg-dark);">📝 Task Size</option>
+                <option value="title" style="background: var(--bg-dark);">📌 Title Size</option>
+            </select>
+            <button onclick="changeFontSize(-1)"
+                style="background: var(--glass-bg); border: 1px solid var(--glass-border); border-radius: 4px; color: var(--text-main); cursor: pointer; font-weight: bold; font-size: 12px; padding: 2px 6px; margin-left: 4px;"
+                title="Decrease font size">-</button>
+            <span id="fs-display"
+                style="color: var(--text-main); font-size: 13px; font-weight: bold; min-width: 18px; text-align: center;">12</span>
+            <button onclick="changeFontSize(1)"
+                style="background: var(--glass-bg); border: 1px solid var(--glass-border); border-radius: 4px; color: var(--text-main); cursor: pointer; font-weight: bold; font-size: 12px; padding: 2px 6px;"
+                title="Increase font size">+</button>
+        </div>
+
+        <div
+            style="display: flex; align-items: center; gap: 4px; border: 1px solid var(--btn-ghost-border); padding: 4px 8px; border-radius: 8px; margin-left: 12px; background: var(--input-bg);">
+            <span style="color: var(--text-dim); font-size: 13px; font-weight: 600;">🔍 Zoom</span>
+            <button onclick="changeZoom(-0.2)"
+                style="background: var(--glass-bg); border: 1px solid var(--glass-border); border-radius: 4px; color: var(--text-main); cursor: pointer; font-weight: bold; font-size: 12px; padding: 2px 6px; margin-left: 4px;"
+                title="Zoom Out">-</button>
+            <span id="zoom-display"
+                style="color: var(--text-main); font-size: 13px; font-weight: bold; min-width: 38px; text-align: center;">100%</span>
+            <button onclick="changeZoom(0.2)"
+                style="background: var(--glass-bg); border: 1px solid var(--glass-border); border-radius: 4px; color: var(--text-main); cursor: pointer; font-weight: bold; font-size: 12px; padding: 2px 6px;"
+                title="Zoom In">+</button>
+        </div>
+
         <button class="nav-btn" style="margin-left: auto;" onclick="openAboutModal()">ℹ️ About</button>
         <button class="nav-btn" onclick="toggleTheme()" id="theme-toggle">☀️ White Theme</button>
     </div>
@@ -512,61 +587,80 @@
     <div class="simulator-card">
         <div class="header">
             <div class="title-area" style="display: flex; flex-direction: column; gap: 10px; align-items: flex-start;">
-                <h1 id="project-title" contenteditable="true" spellcheck="false" class="editable-box">Gantt Chart Maker</h1>
+                <h1 id="project-title" contenteditable="true" spellcheck="false" class="editable-box">Gantt Chart Maker
+                </h1>
                 <p id="project-subtitle" contenteditable="true" spellcheck="false" class="editable-box"
                     style="margin: 0; color: var(--text-dim); font-size: 14px;">Create dynamic project timelines
                     instantly.</p>
             </div>
             <div class="stats-area">
                 <div class="stat-box">
-                    <div id="label-total-tasks" class="stat-label editable-box" contenteditable="true" spellcheck="false"
-                        style="margin-bottom: 5px;">Total Tasks</div>
+                    <div id="label-total-tasks" class="stat-label editable-box" contenteditable="true"
+                        spellcheck="false" style="margin-bottom: 5px;">Total Tasks</div>
                     <div class="stat-value editable-box" id="total-tasks" contenteditable="true" spellcheck="false"
                         style="display: block;">0</div>
                 </div>
                 <div class="stat-box">
-                    <div id="label-total-weeks" class="stat-label editable-box" contenteditable="true" spellcheck="false"
-                        style="margin-bottom: 5px;">Total Weeks</div>
+                    <div id="label-total-weeks" class="stat-label editable-box" contenteditable="true"
+                        spellcheck="false" style="margin-bottom: 5px;">Chart Scope</div>
                     <div class="stat-value">
                         <input type="number" id="custom-total-weeks" value="26" min="1" class="editable-box"
-                            title="Change total weeks visible" onchange="updateChart()"
-                            style="width: 70px; text-align: center; font-size: 18px; font-weight: bold;">
+                            title="Visual chart width in weeks" onchange="updateChart()"
+                            style="width: 60px; text-align: center; font-size: 18px; font-weight: bold;">
                         <span id="label-wks" class="editable-box" contenteditable="true" spellcheck="false"
                             style="font-size: 14px; color: var(--text-dim); font-weight: bold; margin-left: 5px;">Wks</span>
                     </div>
+                </div>
+                <div class="stat-box">
+                    <div id="label-project-time" class="stat-label editable-box" contenteditable="true"
+                        spellcheck="false" style="margin-bottom: 5px;">Project Time</div>
+                    <div class="stat-value editable-box" id="real-total-weeks" contenteditable="true" spellcheck="false"
+                        style="display: block; font-weight: 800; color: var(--primary-blue);">0 Wks</div>
                 </div>
             </div>
         </div>
 
         <div class="controls-panel">
             <div class="form-group">
-                <label id="label-task-name" class="editable-box" contenteditable="true" spellcheck="false">Task Name</label>
+                <label id="label-task-name" class="editable-box" contenteditable="true" spellcheck="false">Task
+                    Name</label>
                 <input type="text" id="input-name" placeholder="E.g. Strategy Formulation">
             </div>
             <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
                 <div class="form-group">
-                    <label id="label-start-week" class="editable-box" contenteditable="true" spellcheck="false">Start (Week)</label>
-                    <input type="number" id="input-start" value="1" min="1">
+                    <label id="label-start-week" class="editable-box" contenteditable="true" spellcheck="false">Start
+                        (Week)</label>
+                    <input type="number" id="input-start" value="0" min="0">
                 </div>
                 <div class="form-group">
-                    <label id="label-duration" class="editable-box" contenteditable="true" spellcheck="false">Duration (Wks)</label>
+                    <label id="label-duration" class="editable-box" contenteditable="true" spellcheck="false">Duration
+                        (Wks)</label>
                     <input type="number" id="input-dur" value="2" min="1">
                 </div>
             </div>
-            <div class="form-group">
-                <label id="label-color" class="editable-box" contenteditable="true" spellcheck="false">Color</label>
-                <select id="input-color">
-                    <option value="var(--primary-blue)">🔵 Blue</option>
-                    <option value="var(--primary-green)">🟢 Green</option>
-                    <option value="var(--primary-orange)">🟠 Orange</option>
-                    <option value="var(--primary-pink)">🩷 Pink</option>
-                    <option value="var(--primary-purple)">🟣 Purple</option>
-                    <option value="var(--primary-red)">🔴 Red</option>
-                    <option value="var(--primary-teal)">🌱 Teal</option>
-                    <option value="var(--primary-cyan)">🩵 Cyan</option>
-                    <option value="var(--primary-yellow)">🟡 Yellow</option>
-                    <option value="var(--primary-indigo)">🌀 Indigo</option>
-                </select>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+                <div class="form-group">
+                    <label class="editable-box" contenteditable="true" spellcheck="false">Type</label>
+                    <select id="input-type">
+                        <option value="task">📝 Task</option>
+                        <option value="title">📌 Title Header</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label id="label-color" class="editable-box" contenteditable="true" spellcheck="false">Color</label>
+                    <select id="input-color">
+                        <option value="var(--primary-blue)">🔵 Blue</option>
+                        <option value="var(--primary-green)">🟢 Green</option>
+                        <option value="var(--primary-orange)">🟠 Orange</option>
+                        <option value="var(--primary-pink)">🩷 Pink</option>
+                        <option value="var(--primary-purple)">🟣 Purple</option>
+                        <option value="var(--primary-red)">🔴 Red</option>
+                        <option value="var(--primary-teal)">🌱 Teal</option>
+                        <option value="var(--primary-cyan)">🩵 Cyan</option>
+                        <option value="var(--primary-yellow)">🟡 Yellow</option>
+                        <option value="var(--primary-indigo)">🌀 Indigo</option>
+                    </select>
+                </div>
             </div>
             <!-- Add Button -->
             <button class="btn" id="add-task-btn">+ Add Task</button>
@@ -581,16 +675,23 @@
         </div>
 
         <div class="chart-panel">
-            <div style="display: flex; justify-content: flex-start; align-items: center; margin-bottom: 8px; padding: 0 40px;">
-                <h2 id="chart-section-title" contenteditable="true" spellcheck="false" class="editable-box" style="margin: 0; font-size: 18px; font-weight: 700; color: var(--text-main);">Project Timeline</h2>
+            <div
+                style="display: flex; justify-content: flex-start; align-items: center; margin-bottom: 8px; padding: 0 40px;">
+                <h2 id="chart-section-title" contenteditable="true" spellcheck="false" class="editable-box"
+                    style="margin: 0; font-size: 18px; font-weight: 700; color: var(--text-main);">Project Timeline</h2>
             </div>
-            <div class="chart-container">
-                <div class="chart-inner" id="chart">
-                    <div class="month-labels" id="month-labels">
-                        <!-- Dynamically generated month labels -->
+            <div class="chart-container" id="chart-container">
+                <div id="timeline-header">
+                    <div class="month-labels" id="month-labels"
+                        style="position: absolute; top: 0; height: 35px; border-bottom: 1px solid var(--glass-border);">
                     </div>
-                    <div id="grid-lines"></div>
-                    <div id="tasks-container"></div>
+                    <div id="week-labels" style="position: absolute; top: 35px; height: 40px;"></div>
+                </div>
+                <div id="chart-scroll">
+                    <div class="chart-inner" id="chart">
+                        <div id="grid-lines"></div>
+                        <div id="tasks-container"></div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -598,14 +699,63 @@
     </div>
 
     <!-- Small Floating Notes Tooltip/Window -->
-    <div id="notes-modal" style="display: none; position: fixed; z-index: 1000; background: var(--card-bg); padding: 16px; border-radius: 12px; width: 320px; border: 1px solid var(--glass-border); box-shadow: 0 10px 40px var(--shadow-color); backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px);">
+    <div id="notes-modal"
+        style="display: none; position: fixed; z-index: 1000; background: var(--card-bg); padding: 16px; border-radius: 12px; width: 340px; box-sizing: border-box; border: 1px solid var(--glass-border); box-shadow: 0 10px 40px var(--shadow-color); backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px);">
         <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; gap: 8px;">
-            <input type="text" id="notes-modal-title" style="flex: 1; margin: 0; font-size: 14px; font-weight: 700; color: var(--text-main); background: var(--input-bg); border: 1px solid var(--btn-ghost-border); border-radius: 6px; padding: 6px 10px; outline: none; transition: all 0.2s; box-sizing: border-box;" onfocus="this.style.borderColor='var(--primary-blue)'; this.style.background='var(--input-bg-focus)'" onblur="this.style.borderColor='var(--input-border)'; this.style.background='var(--input-bg)'">
-            <button onclick="closeNotesModal()" style="background: none; border: none; color: var(--text-dim); font-size: 18px; cursor: pointer; padding: 0; line-height: 1; margin-left: 4px;" onmouseover="this.style.color='var(--text-main)'" onmouseout="this.style.color='var(--text-dim)'">&times;</button>
+            <input type="text" id="notes-modal-title"
+                style="flex: 1; margin: 0; font-size: 14px; font-weight: 700; color: var(--text-main); background: var(--input-bg); border: 1px solid var(--btn-ghost-border); border-radius: 6px; padding: 6px 10px; outline: none; transition: all 0.2s; box-sizing: border-box;"
+                onfocus="this.style.borderColor='var(--primary-blue)'; this.style.background='var(--input-bg-focus)'"
+                onblur="this.style.borderColor='var(--input-border)'; this.style.background='var(--input-bg)'">
+            <button onclick="closeNotesModal()"
+                style="background: none; border: none; color: var(--text-dim); font-size: 18px; cursor: pointer; padding: 0; line-height: 1; margin-left: 4px;"
+                onmouseover="this.style.color='var(--text-main)'"
+                onmouseout="this.style.color='var(--text-dim)'">&times;</button>
         </div>
-        <textarea id="notes-modal-textarea" placeholder="Add notes here..." style="width: 100%; height: 120px; background: var(--input-bg); border: 1px solid var(--input-border); color: var(--text-main); padding: 10px; border-radius: 8px; font-family: inherit; font-size: 13px; resize: none; margin-bottom: 12px; box-sizing: border-box; outline: none; transition: border-color 0.2s;" onfocus="this.style.borderColor='var(--primary-blue)'; this.style.background='var(--input-bg-focus)'" onblur="this.style.borderColor='var(--input-border)'; this.style.background='var(--input-bg)'"></textarea>
+        <textarea id="notes-modal-textarea" placeholder="Add notes here..."
+            style="width: 100%; height: 90px; background: var(--input-bg); border: 1px solid var(--input-border); color: var(--text-main); padding: 10px; border-radius: 8px; font-family: inherit; font-size: 13px; resize: none; margin-bottom: 12px; box-sizing: border-box; outline: none; transition: border-color 0.2s;"
+            onfocus="this.style.borderColor='var(--primary-blue)'; this.style.background='var(--input-bg-focus)'"
+            onblur="this.style.borderColor='var(--input-border)'; this.style.background='var(--input-bg)'"></textarea>
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 12px;">
+            <div style="display: flex; flex-direction: column; gap: 4px;">
+                <label style="font-size: 11px; color: var(--text-dim); font-weight: 600;">Start (Wk)</label>
+                <input type="number" id="notes-modal-start" min="0"
+                    style="width: 100%; background: var(--input-bg); border: 1px solid var(--input-border); color: var(--text-main); border-radius: 6px; padding: 6px 8px; outline: none; font-size: 12px; box-sizing: border-box;">
+            </div>
+            <div style="display: flex; flex-direction: column; gap: 4px;">
+                <label style="font-size: 11px; color: var(--text-dim); font-weight: 600;">Duration</label>
+                <input type="number" id="notes-modal-dur" min="1"
+                    style="width: 100%; background: var(--input-bg); border: 1px solid var(--input-border); color: var(--text-main); border-radius: 6px; padding: 6px 8px; outline: none; font-size: 12px; box-sizing: border-box;">
+            </div>
+            <div style="display: flex; flex-direction: column; gap: 4px;">
+                <label style="font-size: 11px; color: var(--text-dim); font-weight: 600;">Type</label>
+                <select id="notes-modal-type"
+                    style="width: 100%; background: var(--input-bg); border: 1px solid var(--input-border); color: var(--text-main); border-radius: 6px; padding: 6px; outline: none; font-size: 12px; box-sizing: border-box;">
+                    <option style="background: var(--bg-dark);" value="task">📝 Task</option>
+                    <option style="background: var(--bg-dark);" value="title">📌 Title</option>
+                </select>
+            </div>
+            <div style="display: flex; flex-direction: column; gap: 4px;">
+                <label style="font-size: 11px; color: var(--text-dim); font-weight: 600;">Color</label>
+                <select id="notes-modal-color"
+                    style="width: 100%; background: var(--input-bg); border: 1px solid var(--input-border); color: var(--text-main); border-radius: 6px; padding: 6px; outline: none; font-size: 12px; box-sizing: border-box;">
+                    <option style="background: var(--bg-dark);" value="var(--primary-blue)">🔵 Blue</option>
+                    <option style="background: var(--bg-dark);" value="var(--primary-green)">🟢 Green</option>
+                    <option style="background: var(--bg-dark);" value="var(--primary-orange)">🟠 Orange</option>
+                    <option style="background: var(--bg-dark);" value="var(--primary-pink)">🩷 Pink</option>
+                    <option style="background: var(--bg-dark);" value="var(--primary-purple)">🟣 Purple</option>
+                    <option style="background: var(--bg-dark);" value="var(--primary-red)">🔴 Red</option>
+                    <option style="background: var(--bg-dark);" value="var(--primary-teal)">🌱 Teal</option>
+                    <option style="background: var(--bg-dark);" value="var(--primary-cyan)">🩵 Cyan</option>
+                    <option style="background: var(--bg-dark);" value="var(--primary-yellow)">🟡 Yellow</option>
+                    <option style="background: var(--bg-dark);" value="var(--primary-indigo)">🌀 Indigo</option>
+                </select>
+            </div>
+        </div>
+
         <div style="display: flex; justify-content: flex-end;">
-            <button onclick="saveNotes()" class="btn" style="width: auto; padding: 6px 12px; font-size: 12px;">Save</button>
+            <button onclick="saveNotes()" class="btn"
+                style="width: auto; padding: 6px 14px; font-size: 13px; transform: none;">Save Changes</button>
         </div>
     </div>
 
@@ -627,19 +777,23 @@
             currentNoteTaskId = taskId;
             document.getElementById('notes-modal-title').value = task.name;
             document.getElementById('notes-modal-textarea').value = task.notes || '';
-            
+            document.getElementById('notes-modal-start').value = task.start;
+            document.getElementById('notes-modal-dur').value = task.dur;
+            document.getElementById('notes-modal-type').value = task.type || 'task';
+            document.getElementById('notes-modal-color').value = task.color;
+
             const modal = document.getElementById('notes-modal');
             modal.style.display = 'block';
-            
+
             let left = event.clientX + 15;
             let top = event.clientY + 15;
-            
+
             if (left + 320 > window.innerWidth) left = window.innerWidth - 340;
             if (top + 220 > window.innerHeight) top = event.clientY - 230;
-            
+
             modal.style.left = left + 'px';
             modal.style.top = top + 'px';
-            
+
             setTimeout(() => document.getElementById('notes-modal-textarea').focus(), 50);
         }
 
@@ -654,6 +808,10 @@
                 if (task) {
                     task.name = document.getElementById('notes-modal-title').value.trim() || 'Untitled Task';
                     task.notes = document.getElementById('notes-modal-textarea').value;
+                    task.start = Math.max(0, parseInt(document.getElementById('notes-modal-start').value) || 0);
+                    task.dur = Math.max(1, parseInt(document.getElementById('notes-modal-dur').value) || 1);
+                    task.type = document.getElementById('notes-modal-type').value;
+                    task.color = document.getElementById('notes-modal-color').value;
                 }
             }
             closeNotesModal();
@@ -681,7 +839,7 @@
             tasksData.forEach(task => {
                 const el = document.createElement('div');
                 el.className = 'task-item';
-                
+
                 el.ondragstart = (e) => {
                     e.dataTransfer.setData('text/plain', task.id);
                     setTimeout(() => {
@@ -734,15 +892,19 @@
                     <input type="text" class="inline-input" value="${task.name.replace(/"/g, '&quot;')}" onchange="updateTask(${task.id}, 'name', this.value)" style="color: ${task.color}; font-size: 13px; font-weight: 700; width: 100%; margin-bottom: 4px; text-overflow: ellipsis;">
                     <div style="display: flex; gap: 8px; font-size: 11px; color: var(--text-dim); align-items: center; flex-wrap: wrap;">
                         <span style="white-space: nowrap; display: flex; align-items: center; gap: 4px;" class="editable-box" contenteditable="true" spellcheck="false">
-                            Wk <input type="number" class="inline-input" value="${task.start + 1}" min="1" onchange="updateTask(${task.id}, 'start', this.value - 1)" style="width: 45px; color: var(--text-main); display: inline-block;">
+                            Wk <input type="number" class="inline-input" value="${task.start}" min="0" onchange="updateTask(${task.id}, 'start', this.value)" style="width: 45px; color: var(--text-main); display: inline-block;">
                         </span>
                         <span style="white-space: nowrap;" class="editable-box" contenteditable="true" spellcheck="false">
-                            - Wk ${task.start + task.dur + 1}
+                            - Wk ${task.start + task.dur}
                         </span>
                         <span style="white-space: nowrap; display: flex; align-items: center; gap: 4px;" class="editable-box" contenteditable="true" spellcheck="false">
                             (<input type="number" class="inline-input" value="${task.dur}" min="1" onchange="updateTask(${task.id}, 'dur', this.value)" style="width: 45px; color: var(--text-main); display: inline-block;"> wks)
                         </span>
-                        <select class="inline-input" onchange="updateTask(${task.id}, 'color', this.value)" style="margin-left: auto; color: var(--text-main); cursor: pointer;">
+                        <select class="inline-input" onchange="updateTask(${task.id}, 'type', this.value)" style="margin-left: auto; color: var(--text-main); cursor: pointer; max-width: 80px;">
+                            <option value="task" ${task.type !== 'title' ? 'selected' : ''}>📝 Task</option>
+                            <option value="title" ${task.type === 'title' ? 'selected' : ''}>📌 Title</option>
+                        </select>
+                        <select class="inline-input" onchange="updateTask(${task.id}, 'color', this.value)" style="margin-left: 6px; color: var(--text-main); cursor: pointer;">
                             <option style="background: var(--bg-dark);" value="var(--primary-blue)" ${task.color === 'var(--primary-blue)' ? 'selected' : ''}>🔵 Blue</option>
                             <option style="background: var(--bg-dark);" value="var(--primary-green)" ${task.color === 'var(--primary-green)' ? 'selected' : ''}>🟢 Green</option>
                             <option style="background: var(--bg-dark);" value="var(--primary-orange)" ${task.color === 'var(--primary-orange)' ? 'selected' : ''}>🟠 Orange</option>
@@ -771,16 +933,18 @@
             const startNode = document.getElementById('input-start');
             const durNode = document.getElementById('input-dur');
             const colorNode = document.getElementById('input-color');
+            const typeNode = document.getElementById('input-type');
 
             const name = nameNode.value.trim() || 'Untitled Task';
-            const start = Math.max(0, (parseInt(startNode.value) || 1) - 1);
+            const start = Math.max(0, parseInt(startNode.value) || 0);
             const dur = parseInt(durNode.value) || 1;
             const color = colorNode.value;
+            const type = typeNode ? typeNode.value : 'task';
 
-            tasksData.push({ id: nextId++, name, start, dur, color });
+            tasksData.push({ id: nextId++, name, start, dur, color, type, notes: '' });
 
             nameNode.value = '';
-            startNode.value = (start + dur + 1).toString();
+            startNode.value = (start + dur).toString();
             durNode.value = '2';
 
             updateChart();
@@ -805,64 +969,272 @@
 
             const scale = 100 / chartWeeks; // Percent per week
 
-            // Adjust chart width dynamically, enforcing a physical pixel minimum to prevent text crushing on small window sizes
-            const minGridWidth = chartWeeks * 45; // Minimum 45 physical pixels per week
+            // Adjust chart width dynamically, scaled by global chart zoom
+            const minGridWidth = chartWeeks * 75 * globalChartZoom;
             chartInner.style.minWidth = `max(100%, ${minGridWidth}px)`;
-            chartInner.style.width = Math.max(100, (chartWeeks / 26) * 100) + '%';
+            chartInner.style.width = Math.max(100, (chartWeeks / 15) * 100 * globalChartZoom) + '%';
 
-            // Rebuild Grid
+            // Rebuild Grid and Week Labels
             gridLines.innerHTML = '';
+            const weekLabels = document.getElementById('week-labels');
+            weekLabels.innerHTML = '';
+
+            // Sync axis container widths with chart width to allow correct scrolling and alignment
+            const axisWidth = chartInner.style.width;
+            const axisMinWidth = chartInner.style.minWidth;
+            weekLabels.style.width = axisWidth;
+            weekLabels.style.minWidth = axisMinWidth;
+            monthLabels.style.width = axisWidth;
+            monthLabels.style.minWidth = axisMinWidth;
             for (let i = 0; i <= chartWeeks; i++) {
                 const line = document.createElement('div');
                 line.className = 'grid-line';
                 line.style.left = (i * scale) + '%';
-                line.innerHTML = `<span class="editable-box" style="position: absolute; top: 35px; transform: translateX(-50%); font-size: 12px; font-weight: 600; color: var(--text-dim); text-align: center; background: var(--bg-dark); white-space: nowrap; z-index: 2;" contenteditable="true" spellcheck="false">Wk ${i + 1}</span>`;
                 gridLines.appendChild(line);
+
+                const wlabel = document.createElement('span');
+                wlabel.className = 'editable-box';
+                wlabel.style.position = 'absolute';
+                wlabel.style.left = (i * scale) + '%';
+                wlabel.style.transform = 'translateX(-50%)';
+                wlabel.style.fontSize = '12px';
+                wlabel.style.fontWeight = '600';
+                wlabel.style.color = 'var(--text-dim)';
+                wlabel.style.textAlign = 'center';
+                wlabel.style.top = '10px';
+                wlabel.style.background = 'transparent';
+                wlabel.style.whiteSpace = 'nowrap';
+                wlabel.style.zIndex = '2';
+                wlabel.contentEditable = "true";
+                wlabel.spellcheck = false;
+                wlabel.innerText = `Wk ${i}`;
+                weekLabels.appendChild(wlabel);
             }
 
             // Rebuild Month Labels
             monthLabels.innerHTML = '';
+            const calendarMonths = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+
             for (let i = 0; i < chartWeeks; i += 4) {
-                const monthNum = Math.floor(i / 4) + 1;
-                const span = document.createElement('span');
-                span.className = 'editable-box';
-                span.contentEditable = "true";
-                span.spellcheck = false;
-                span.innerText = `Month ${monthNum}`;
-                span.style.position = 'absolute';
-                span.style.left = (i * scale) + '%';
-                span.style.minWidth = (Math.min(4, chartWeeks - i) * scale) + '%';
-                span.style.textAlign = 'center';
-                span.style.background = 'var(--bg-dark)';
-                span.style.whiteSpace = 'nowrap';
-                span.style.zIndex = '2';
-                monthLabels.appendChild(span);
+                const monthOffset = Math.floor(i / 4);
+
+                const select = document.createElement('select');
+                select.className = 'editable-box';
+                select.style.position = 'absolute';
+                select.style.left = (i * scale) + '%';
+                select.style.width = (Math.min(4, chartWeeks - i) * scale) + '%';
+                select.style.textAlign = 'center';
+                select.style.textAlignLast = 'center';
+                select.style.top = '6px';
+                select.style.fontWeight = 'bold';
+                select.style.color = 'var(--text-main)';
+                select.style.background = 'transparent';
+                select.style.border = 'none';
+                select.style.outline = 'none';
+                select.style.cursor = 'pointer';
+                select.style.zIndex = '3';
+                select.title = "Select to change starting project month";
+
+                const currentMonthIdx = (globalStartMonth + monthOffset) % 12;
+
+                calendarMonths.forEach((m, idx) => {
+                    const opt = document.createElement('option');
+                    opt.value = idx;
+                    opt.innerText = m;
+                    opt.style.background = 'var(--bg-dark)';
+                    if (idx === currentMonthIdx) opt.selected = true;
+                    select.appendChild(opt);
+                });
+
+                select.onchange = (e) => {
+                    const chosenIdx = parseInt(e.target.value);
+                    let newStart = chosenIdx - monthOffset;
+                    while (newStart < 0) newStart += 12;
+                    globalStartMonth = newStart % 12;
+                    updateChart();
+                };
+
+                monthLabels.appendChild(select);
             }
 
             // Render Tasks
             tasksContainer.innerHTML = '';
+            tasksContainer.style.paddingTop = '10px';
             tasksData.forEach((task, index) => {
                 const row = document.createElement('div');
                 row.className = 'task-row';
-                row.style.top = (index * 52 + 80) + 'px'; // Starts below axis labels
 
                 const bar = document.createElement('div');
                 bar.className = 'task-bar';
-                bar.style.left = (task.start * scale) + '%';
+                bar.style.marginLeft = (task.start * scale) + '%';
                 bar.style.width = (task.dur * scale) + '%';
-                bar.style.backgroundColor = task.color;
-                bar.title = "Click to add or view notes";
-                
+
+                if (task.type === 'title') {
+                    bar.style.backgroundColor = 'transparent';
+                    bar.style.boxShadow = 'none';
+                    bar.style.border = 'none';
+                    bar.style.borderBottom = '3px solid ' + task.color;
+                    bar.style.color = 'var(--text-main)';
+                    bar.style.fontSize = globalTitleFontSize + 'px';
+                    bar.style.fontWeight = '800';
+                    bar.style.padding = '0 6px';
+                    bar.style.borderRadius = '0';
+                    bar.style.textTransform = 'uppercase';
+                    bar.style.letterSpacing = '1px';
+                } else {
+                    bar.style.backgroundColor = task.color;
+                    bar.style.fontSize = globalTaskFontSize + 'px';
+                }
+
+                bar.title = "Drag to move timeline. Drag right edge to resize. Click to edit notes.";
+
                 if (task.notes && task.notes.trim() !== '') {
                     bar.innerHTML = task.name.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;') + ' <span style="margin-left: 6px; font-size: 11px;">📝</span>';
                 } else {
                     bar.innerText = task.name;
                 }
 
-                bar.onclick = function (e) {
-                    openNotesModal(task.id, e);
+                // --------- DRAG TO MOVE ---------
+                let isDragging = false;
+                let startX = 0;
+                let initialStart = task.start;
+                let hasMoved = false;
+
+                bar.addEventListener('mousedown', (e) => {
+                    if (e.button !== 0) return;
+                    e.preventDefault();
                     e.stopPropagation();
-                };
+
+                    isDragging = true;
+                    hasMoved = false;
+                    startX = e.pageX;
+                    initialStart = task.start;
+
+                    const chartBody = document.getElementById('chart');
+                    const weeksTotal = parseInt(document.getElementById('custom-total-weeks').value) || 26;
+                    const pixelsPerWeek = chartBody.offsetWidth / weeksTotal;
+
+                    bar.style.transition = 'none';
+                    bar.style.zIndex = '100';
+                    bar.style.opacity = '0.9';
+                    bar.style.cursor = 'grabbing';
+
+                    const onMouseMove = (moveEvent) => {
+                        if (!isDragging) return;
+                        const deltaX = moveEvent.pageX - startX;
+                        if (Math.abs(deltaX) > 5) hasMoved = true;
+
+                        if (moveEvent.altKey) {
+                            bar.style.cursor = 'copy';
+                        } else {
+                            bar.style.cursor = 'grabbing';
+                        }
+
+                        let weeksMoved = Math.round(deltaX / pixelsPerWeek);
+                        let newStart = Math.max(0, initialStart + weeksMoved);
+                        bar.style.marginLeft = (newStart * scale) + '%';
+                    };
+
+                    const onMouseUp = (upEvent) => {
+                        isDragging = false;
+                        bar.style.transition = '';
+                        bar.style.zIndex = '';
+                        bar.style.opacity = '1';
+                        bar.style.cursor = 'pointer';
+
+                        document.removeEventListener('mousemove', onMouseMove);
+                        document.removeEventListener('mouseup', onMouseUp);
+
+                        if (hasMoved) {
+                            const deltaX = upEvent.pageX - startX;
+                            let weeksMoved = Math.round(deltaX / pixelsPerWeek);
+                            let newStart = Math.max(0, initialStart + weeksMoved);
+
+                            if (upEvent.altKey) {
+                                tasksData.push({
+                                    id: nextId++,
+                                    name: task.name + " (Copy)",
+                                    start: newStart,
+                                    dur: task.dur,
+                                    color: task.color,
+                                    notes: task.notes
+                                });
+                                updateChart();
+                            } else if (newStart !== task.start) {
+                                task.start = newStart;
+                                updateChart(); // Re-render updates everything including list texts
+                            } else {
+                                bar.style.marginLeft = (task.start * scale) + '%';
+                            }
+                        } else {
+                            openNotesModal(task.id, e);
+                        }
+                    };
+
+                    document.addEventListener('mousemove', onMouseMove);
+                    document.addEventListener('mouseup', onMouseUp);
+                });
+
+                // --------- DRAG TO RESIZE ---------
+                const resizeHandle = document.createElement('div');
+                resizeHandle.style.position = 'absolute';
+                resizeHandle.style.right = '0';
+                resizeHandle.style.top = '0';
+                resizeHandle.style.bottom = '0';
+                resizeHandle.style.width = '12px';
+                resizeHandle.style.cursor = 'ew-resize';
+                resizeHandle.style.zIndex = '10';
+                resizeHandle.title = "Drag to resize duration";
+
+                resizeHandle.onmouseenter = () => resizeHandle.style.background = 'rgba(255,255,255,0.15)';
+                resizeHandle.onmouseleave = () => resizeHandle.style.background = 'transparent';
+
+                resizeHandle.addEventListener('mousedown', (e) => {
+                    if (e.button !== 0) return;
+                    e.preventDefault();
+                    e.stopPropagation();
+
+                    let isResizing = true;
+                    let rStartX = e.pageX;
+                    let initialDur = task.dur;
+
+                    const chartBody = document.getElementById('chart');
+                    const weeksTotal = parseInt(document.getElementById('custom-total-weeks').value) || 26;
+                    const pixelsPerWeek = chartBody.offsetWidth / weeksTotal;
+
+                    bar.style.transition = 'none';
+
+                    const onMouseMove = (moveEvent) => {
+                        if (!isResizing) return;
+                        const deltaX = moveEvent.pageX - rStartX;
+                        let durationDelta = Math.round(deltaX / pixelsPerWeek);
+                        let newDur = Math.max(1, initialDur + durationDelta);
+                        bar.style.width = (newDur * scale) + '%';
+                    };
+
+                    const onMouseUp = (upEvent) => {
+                        isResizing = false;
+                        bar.style.transition = '';
+                        document.removeEventListener('mousemove', onMouseMove);
+                        document.removeEventListener('mouseup', onMouseUp);
+
+                        const deltaX = upEvent.pageX - rStartX;
+                        let durationDelta = Math.round(deltaX / pixelsPerWeek);
+                        let newDur = Math.max(1, initialDur + durationDelta);
+
+                        if (newDur !== task.dur) {
+                            task.dur = newDur;
+                            updateChart();
+                        } else {
+                            bar.style.width = (task.dur * scale) + '%';
+                        }
+                    };
+
+                    document.addEventListener('mousemove', onMouseMove);
+                    document.addEventListener('mouseup', onMouseUp);
+                });
+
+                bar.appendChild(resizeHandle);
 
                 row.appendChild(bar);
                 tasksContainer.appendChild(row);
@@ -898,19 +1270,69 @@
             const chartNode = document.getElementById('chart');
             const originalBg = chartNode.style.background;
             const originalBorderTop = chartNode.style.borderTop;
-            
-            // To ensure the PNG has a solid transparent mapping
-            const themeBg = document.body.getAttribute('data-theme') === 'light' ? '#E4E1D9' : '#0f172a'; chartNode.style.background = themeBg;
-            
-            // Temporarily insert title so it gets cleanly captured in export PNG
-            chartNode.style.borderTop = '70px solid transparent';
+
+            // To ensure the PNG has a solid themed background
+            const themeBg = document.body.getAttribute('data-theme') === 'light' ? '#E4E1D9' : '#0f172a';
+            chartNode.style.background = themeBg;
+
+            // Temporarily insert title and axis so they get cleanly captured in export PNG
+            // We use a larger top border to create space for the title + month/week axis
+            chartNode.style.borderTop = '130px solid transparent';
+
             const originalTitleBtn = document.getElementById('chart-section-title');
             const clonedTitle = document.createElement('h2');
             clonedTitle.innerHTML = originalTitleBtn.innerHTML;
             clonedTitle.id = 'temp-export-title';
-            clonedTitle.style.cssText = "position: absolute; top: -55px; left: 0px; font-size: 24px; font-weight: 700; color: var(--text-main); margin: 0; z-index: 100;";
+            clonedTitle.style.cssText = "position: absolute; top: -115px; left: 0px; font-size: 24px; font-weight: 700; color: var(--text-main); margin: 0; z-index: 101;";
             chartNode.appendChild(clonedTitle);
-            
+
+            // Clone Timeline Header (Months and weeks)
+            const clonedHeader = document.createElement('div');
+            clonedHeader.id = 'temp-export-header';
+            // We append to chartNode (chart-inner), which already has 40px side-borders.
+            // By setting width: 100% and NO borders on the clonedHeader itself,
+            // it naturally occupies the content area and aligns its children correctly.
+            clonedHeader.style.cssText = `
+                position: absolute; top: -75px; left: 0; 
+                width: 100%; height: 75px; border-bottom: 1px solid var(--border-color);
+                z-index: 100; overflow: visible;
+            `;
+
+            // We iterate and copy labels to ensure selects render their chosen text as spans
+            const originalMonths = document.getElementById('month-labels');
+            const clonedMonths = document.createElement('div');
+            // Remove the 40px borders from the inner spans because the parent (clonedHeader) 
+            // is already sitting inside the content area of chart-inner.
+            clonedMonths.style.cssText = "position: absolute; top: 0; width: 100%; height: 35px;";
+            Array.from(originalMonths.children).forEach(child => {
+                const span = document.createElement('span');
+                span.className = child.className;
+                span.style.cssText = child.style.cssText;
+                span.style.background = 'transparent';
+                span.style.border = 'none';
+                if (child.tagName === 'SELECT') {
+                    span.innerText = child.options[child.selectedIndex].text;
+                } else {
+                    span.innerText = child.innerText;
+                }
+                clonedMonths.appendChild(span);
+            });
+            clonedHeader.appendChild(clonedMonths);
+
+            const originalWeeks = document.getElementById('week-labels');
+            const clonedWeeks = document.createElement('div');
+            clonedWeeks.style.cssText = "position: absolute; top: 35px; width: 100%; height: 40px;";
+            Array.from(originalWeeks.children).forEach(child => {
+                const span = document.createElement('span');
+                span.className = child.className;
+                span.style.cssText = child.style.cssText;
+                span.style.background = 'transparent';
+                span.innerText = child.innerText;
+                clonedWeeks.appendChild(span);
+            });
+            clonedHeader.appendChild(clonedWeeks);
+            chartNode.appendChild(clonedHeader);
+
             const btn = document.querySelector('button[onclick="exportChartAsPNG()"]');
             const originalText = btn.innerHTML;
             btn.innerHTML = '⏳ Exporting...';
@@ -926,12 +1348,14 @@
                 chartNode.style.borderTop = originalBorderTop;
                 const tmpNode = document.getElementById('temp-export-title');
                 if (tmpNode) tmpNode.remove();
-                
+                const tmpHeader = document.getElementById('temp-export-header');
+                if (tmpHeader) tmpHeader.remove();
+
                 const link = document.createElement('a');
                 link.download = 'Gantt_Timeline.png';
                 link.href = canvas.toDataURL('image/png');
                 link.click();
-                
+
                 btn.innerHTML = '✅ Exported!';
                 setTimeout(() => {
                     btn.innerHTML = originalText;
@@ -943,6 +1367,8 @@
                 chartNode.style.borderTop = originalBorderTop;
                 const tmpNode = document.getElementById('temp-export-title');
                 if (tmpNode) tmpNode.remove();
+                const tmpHeader = document.getElementById('temp-export-header');
+                if (tmpHeader) tmpHeader.remove();
                 btn.innerHTML = '❌ Error';
                 setTimeout(() => {
                     btn.innerHTML = originalText;
@@ -963,8 +1389,8 @@
                 z-index: 2000; display: flex; align-items: center; justify-content: center;
                 opacity: 0; transition: opacity 0.2s ease;
             `;
-            
-            overlay.onclick = function(e) {
+
+            overlay.onclick = function (e) {
                 if (e.target === overlay) {
                     overlay.style.opacity = '0';
                     modal.style.transform = 'scale(0.95)';
@@ -981,7 +1407,7 @@
                 text-align: center;
                 transform: scale(0.95); transition: transform 0.2s ease;
             `;
-            
+
             modal.innerHTML = `
                 <div style="font-size: 56px; margin-bottom: 20px; text-shadow: 0 0 20px var(--shadow-color);">❄️</div>
                 <h3 style="margin: 0 0 10px 0; font-size: 26px; color: var(--text-main); font-weight: 600;">About</h3>
@@ -997,10 +1423,10 @@
                     <button class="nav-btn" style="margin: 0 auto; background: var(--btn-ghost-hover); padding: 10px 30px;" onclick="document.getElementById('about-modal-layer').click()">Close</button>
                 </div>
             `;
-            
+
             overlay.appendChild(modal);
             document.body.appendChild(overlay);
-            
+
             setTimeout(() => {
                 overlay.style.opacity = '1';
                 modal.style.transform = 'scale(1)';
@@ -1025,7 +1451,14 @@
             const data = {
                 totalWeeks: document.getElementById('custom-total-weeks').value,
                 tasksData: tasksData,
-                editablesData: editablesData
+                editablesData: editablesData,
+                settings: {
+                    startMonth: globalStartMonth,
+                    chartZoom: globalChartZoom,
+                    taskFontSize: globalTaskFontSize,
+                    titleFontSize: globalTitleFontSize,
+                    theme: document.body.getAttribute('data-theme') || 'dark'
+                }
             };
             const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
             const url = URL.createObjectURL(blob);
@@ -1047,10 +1480,10 @@
             if (!file) return;
 
             const reader = new FileReader();
-            reader.onload = function(e) {
+            reader.onload = function (e) {
                 try {
                     const data = JSON.parse(e.target.result);
-                    
+
                     if (data.totalWeeks !== undefined) {
                         document.getElementById('custom-total-weeks').value = data.totalWeeks;
                     }
@@ -1059,6 +1492,30 @@
                         let maxId = 0;
                         tasksData.forEach(task => { if (task.id > maxId) maxId = task.id; });
                         nextId = maxId + 1;
+                    }
+
+                    // Restore all saved settings
+                    if (data.settings) {
+                        const s = data.settings;
+                        if (s.startMonth !== undefined) globalStartMonth = s.startMonth;
+                        if (s.chartZoom !== undefined) {
+                            globalChartZoom = s.chartZoom;
+                            const zd = document.getElementById('zoom-display');
+                            if (zd) zd.innerText = Math.round(globalChartZoom * 100) + '%';
+                        }
+                        if (s.taskFontSize !== undefined) globalTaskFontSize = s.taskFontSize;
+                        if (s.titleFontSize !== undefined) globalTitleFontSize = s.titleFontSize;
+                        if (s.theme === 'light') {
+                            document.body.setAttribute('data-theme', 'light');
+                            const btn = document.getElementById('theme-toggle');
+                            if (btn) btn.innerHTML = '🌙 Dark Theme';
+                        } else {
+                            document.body.removeAttribute('data-theme');
+                            const btn = document.getElementById('theme-toggle');
+                            if (btn) btn.innerHTML = '☀️ White Theme';
+                        }
+                        // Sync font size display to whichever target is currently selected
+                        updateFontSizeDisplay();
                     }
 
                     // Must update chart to redraw UI based on changed state
@@ -1084,6 +1541,47 @@
             reader.readAsText(file);
         }
 
+        function randomizeColors() {
+            const colors = [
+                'var(--primary-blue)', 'var(--primary-green)', 'var(--primary-orange)',
+                'var(--primary-pink)', 'var(--primary-purple)', 'var(--primary-red)',
+                'var(--primary-teal)', 'var(--primary-cyan)', 'var(--primary-yellow)',
+                'var(--primary-indigo)'
+            ];
+            tasksData.forEach(task => {
+                task.color = colors[Math.floor(Math.random() * colors.length)];
+            });
+            updateChart();
+        }
+
+        let globalChartZoom = 1.0;
+        let globalStartMonth = 0; // 0 = January
+
+        function changeZoom(delta) {
+            globalChartZoom = Math.max(0.4, Math.min(5.0, globalChartZoom + delta));
+            document.getElementById('zoom-display').innerText = Math.round(globalChartZoom * 100) + '%';
+            updateChart();
+        }
+
+        let globalTaskFontSize = 12;
+        let globalTitleFontSize = 14;
+
+        function updateFontSizeDisplay() {
+            const target = document.getElementById('fs-target').value;
+            document.getElementById('fs-display').innerText = target === 'task' ? globalTaskFontSize : globalTitleFontSize;
+        }
+
+        function changeFontSize(delta) {
+            const target = document.getElementById('fs-target').value;
+            if (target === 'task') {
+                globalTaskFontSize = Math.max(8, Math.min(48, globalTaskFontSize + delta));
+            } else {
+                globalTitleFontSize = Math.max(8, Math.min(48, globalTitleFontSize + delta));
+            }
+            updateFontSizeDisplay();
+            updateChart();
+        }
+
         function toggleTheme() {
             const body = document.body;
             const btn = document.getElementById('theme-toggle');
@@ -1096,7 +1594,90 @@
             }
             updateChart(); // redraw inline colors relying on theme variables if any
         }
-        
+
+        // Sync horizontal scroll: when chart-scroll scrolls left/right, mirror it in the timeline-header
+        const chartScroll = document.getElementById('chart-scroll');
+        const timelineHeader = document.getElementById('timeline-header');
+        if (chartScroll && timelineHeader) {
+            chartScroll.addEventListener('scroll', () => {
+                timelineHeader.scrollLeft = chartScroll.scrollLeft;
+            });
+        }
+
+        // Add chart drag-to-draw listener to create new tasks natively
+        chartInner.addEventListener('mousedown', (e) => {
+            if (e.button !== 0) return;
+            // Ignore if clicking on an existing bar or handles, or gridlines
+            if (e.target.closest('.task-bar') || e.target.closest('.grid-line') || e.target.closest('.month-labels')) return;
+
+            const rect = chartInner.getBoundingClientRect();
+            const startX = e.clientX - rect.left;
+
+            const weeksTotal = parseInt(document.getElementById('custom-total-weeks').value) || 26;
+            const pixelsPerWeek = chartInner.offsetWidth / weeksTotal;
+
+            const startWeek = Math.max(0, Math.floor(startX / pixelsPerWeek));
+
+            const ghost = document.createElement('div');
+            ghost.className = 'task-bar';
+            ghost.style.position = 'absolute';
+            ghost.style.opacity = '0.5';
+            ghost.style.marginLeft = (startWeek * (100 / weeksTotal)) + '%';
+            ghost.style.top = (e.clientY - rect.top - 16) + 'px';
+            ghost.style.width = '0%';
+            ghost.style.backgroundColor = 'var(--primary-blue)';
+            ghost.innerText = 'New Task...';
+            ghost.style.pointerEvents = 'none';
+            chartInner.appendChild(ghost);
+
+            let isDrawing = true;
+
+            const onMouseMove = (moveEvent) => {
+                if (!isDrawing) return;
+                const currentX = moveEvent.clientX - rect.left;
+                const widthPixels = Math.max(0, currentX - startX);
+                const durWeeks = Math.max(1, Math.round(widthPixels / pixelsPerWeek));
+                ghost.style.width = (durWeeks * (100 / weeksTotal)) + '%';
+            };
+
+            const onMouseUp = (upEvent) => {
+                isDrawing = false;
+                document.removeEventListener('mousemove', onMouseMove);
+                document.removeEventListener('mouseup', onMouseUp);
+
+                ghost.remove();
+
+                const currentX = upEvent.clientX - rect.left;
+                if (Math.abs(currentX - startX) > 10) {
+                    const widthPixels = Math.max(0, currentX - startX);
+                    const durWeeks = Math.max(1, Math.round(widthPixels / pixelsPerWeek));
+
+                    tasksData.push({
+                        id: nextId++,
+                        name: 'New Custom Task',
+                        start: startWeek,
+                        dur: durWeeks,
+                        color: 'var(--primary-blue)',
+                        notes: ''
+                    });
+                    updateChart();
+                }
+            };
+
+            document.addEventListener('mousemove', onMouseMove);
+            document.addEventListener('mouseup', onMouseUp);
+        });
+
+        // Close and save notes modal when clicking outside
+        document.addEventListener('mousedown', (e) => {
+            const modal = document.getElementById('notes-modal');
+            if (modal.style.display === 'block') {
+                if (!modal.contains(e.target) && !e.target.closest('.task-bar')) {
+                    saveNotes();
+                }
+            }
+        });
+
         // Init
         updateChart();
     </script>
